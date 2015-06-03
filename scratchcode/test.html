@@ -1,0 +1,42 @@
+<html>
+<head>
+  <title>test facebook api call</title>
+  
+</head>
+<body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '827486570639909',
+      xfbml      : true,
+      version    : 'v2.3'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<form action="" method="post">
+  
+  <label for="fb_profile_url" class="text-input-label fb_profile_url-text-input-label">
+    Enter your Facebook page URL:
+  </label>
+  
+  <input type="text" name="fb_profile_url" value="" class="fb_url" size="45" placeholder="http://www.facebook.com/YourProfileName" />
+
+  <input type="hidden" name="unsanitized" class="hidden-input-for-unsanitized" />
+  <p>
+    <input type="submit" value="Lookup numeric ID..." class="button-primary">
+  </p>
+</form>
+
+</body>
+<script src="./scripts.js" type="text/javascript"></script>
+</html>
