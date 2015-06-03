@@ -1,8 +1,9 @@
 class CreateWebsites < ActiveRecord::Migration
   def change
     create_table :websites do |t|
+      t.string :fb_id
       t.string :name
-      t.string :contact_name
+      t.string :category
       t.text :about
       t.text :description
       t.text :company_overview
@@ -16,20 +17,17 @@ class CreateWebsites < ActiveRecord::Migration
       t.string :country
       t.integer :latitude
       t.integer :longitude
-
-      t.string :html_title
-
-      t.string :facebook_url
-      t.string :twitter_url
-
+      t.string :hours
       t.string :cover_photo
       t.string :logo
-      
+
+      t.string :facebook_url
+      t.string :contact_name
+      t.string :twitter_url
+      t.string :html_title
       t.boolean :published
       t.boolean :display_news
-
       t.string :domain
-
       t.references :template
       t.references :user
 

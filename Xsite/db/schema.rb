@@ -42,18 +42,24 @@ ActiveRecord::Schema.define(version: 20150603180820) do
   end
 
   create_table "websites", force: :cascade do |t|
+    t.string   "fb_id"
     t.string   "name"
+    t.string   "category"
     t.string   "contact_name"
     t.text     "about"
     t.text     "description"
+    t.text     "company_overview"
     t.text     "mission"
     t.string   "year_founded"
+    t.string   "email"
     t.string   "phone"
+    t.string   "street"
     t.string   "city"
     t.string   "zip"
     t.string   "country"
     t.integer  "latitude"
     t.integer  "longitude"
+    t.string   "hours"
     t.string   "html_title"
     t.string   "facebook_url"
     t.string   "twitter_url"
@@ -64,8 +70,8 @@ ActiveRecord::Schema.define(version: 20150603180820) do
     t.string   "domain"
     t.integer  "template_id"
     t.integer  "user_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
 end
