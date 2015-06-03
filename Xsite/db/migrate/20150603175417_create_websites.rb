@@ -5,9 +5,12 @@ class CreateWebsites < ActiveRecord::Migration
       t.string :contact_name
       t.text :about
       t.text :description
+      t.text :company_overview
       t.text :mission
       t.string :year_founded
+      t.string :email
       t.string :phone
+      t.string :street
       t.string :city
       t.string :zip
       t.string :country
