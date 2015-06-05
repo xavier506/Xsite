@@ -1,6 +1,6 @@
 class CreateAlbums < ActiveRecord::Migration
   def change
-    create_table :albums_tables do |t|
+    create_table :albums do |t|
     
     t.string :name
     t.string :album_id

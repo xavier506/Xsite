@@ -1,6 +1,6 @@
 class CreateUsers < ActiveRecord::Migration
   def change
-    create_table :users_tables do |t|
+    create_table :users do |t|
     
     t.string :facebook_id
     t.string :email

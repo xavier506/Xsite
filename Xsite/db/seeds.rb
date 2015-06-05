@@ -5,3 +5,4 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+templates = Template.create([{ name: 'Default' }, { name: 'Parallax' }, { name: 'Ellegance' }, { name: 'Professional' }])

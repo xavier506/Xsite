@@ -28,7 +28,8 @@ class CreateWebsites < ActiveRecord::Migration
       t.boolean :published
       t.boolean :display_news
       t.string :domain
-      t.references :template
+      t.integer :template_id, :null => false, :default => 1
+      #t.references :template
       t.references :user
 
       t.timestamps null: false

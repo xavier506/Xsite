@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20150603180820) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "albums_tables", force: :cascade do |t|
+  create_table "albums", force: :cascade do |t|
     t.string   "name"
     t.string   "album_id"
     t.integer  "website_id"
@@ -24,14 +24,14 @@ ActiveRecord::Schema.define(version: 20150603180820) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "templates_tables", force: :cascade do |t|
+  create_table "templates", force: :cascade do |t|
     t.string   "name"
     t.string   "path"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "users_tables", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "facebook_id"
     t.string   "email"
     t.string   "name"
@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(version: 20150603180820) do
     t.string   "fb_id"
     t.string   "name"
     t.string   "category"
-    t.string   "contact_name"
     t.text     "about"
     t.text     "description"
     t.text     "company_overview"
@@ -60,11 +59,12 @@ ActiveRecord::Schema.define(version: 20150603180820) do
     t.integer  "latitude"
     t.integer  "longitude"
     t.string   "hours"
-    t.string   "html_title"
-    t.string   "facebook_url"
-    t.string   "twitter_url"
     t.string   "cover_photo"
     t.string   "logo"
+    t.string   "facebook_url"
+    t.string   "contact_name"
+    t.string   "twitter_url"
+    t.string   "html_title"
     t.boolean  "published"
     t.boolean  "display_news"
     t.string   "domain"
