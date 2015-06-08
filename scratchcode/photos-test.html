@@ -8,8 +8,7 @@
   <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script>
 
-var postsArr = new Array ();
-  // This is called with the results from from FB.getLoginStatus().
+// This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
     console.log(response);
@@ -19,8 +18,8 @@ var postsArr = new Array ();
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
-      testAPI();
-      getPosts("119216568127407", setPostsArr); 
+      getCoverPhotos('119216568127407')
+
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -32,12 +31,7 @@ var postsArr = new Array ();
         'into Facebook.';
     }
   }
-
-  function setPostsArr(arr) {
-    postsArr = arr;
-  }
-
-  // This function is called when someone finishes with the Login
+// This function is called when someone finishes with the Login
   // Button.  See the onlogin handler attached to it in the sample
   // code below.
   function checkLoginState() {
@@ -81,115 +75,35 @@ var postsArr = new Array ();
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 
-  // Here we run a very simple test of the Graph API after login is
-  // successful.  See statusChangeCallback() for when this call is made.
-  function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
-    });
-  }
-
-
-function getPosts(pageID, callback){
-/* make the API call */
-  FB.api(
-      "/" + pageID + "/feed",
-      function (response) {
-        if (response && !response.error) {
-          console.log(response);
-          callback(response.data);
-        }
-      }
-  );
-}
-
 /// g0ing to work on photos now 
 
-/* make the API call */
-function getPhotos(pageid){
-  FB.api(
-      "/"+ pageid +"/albums",
-      function (response) {
-        if (response && !response.error) {
-          console.log(response);
-        }
-      }
-  );
-}
-
-
-</script>
-
-<!--
-  Below we include the Login Button social plugin. This button uses
-  the JavaScript SDK to present a graphical Login button that triggers
-  the FB.login() function when clicked.
--->
-
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>
-
-<div id="status">
-</div>
-
-<p>General Assembly Page ID : 119216568127407</p>
-<input type="text" id="pageid" value="119216568127407" /> 
-<button>get posts</button>
-
-<script>
-
-$('button').click(function(){
-  console.log("here come the posts")
-  var pageid = $('input').val()
-  console.log("Page ID :" + pageid)
-  getPosts(pageid);
-})
-
+var coverPhotos = []
 
 /* make the API call */
-FB.api(
-    "/{page-id}/albums",
-    function (response) {
-      if (response && !response.error) {
-        /* handle the result */
+function getCoverPhotos(pageid){
+
+  FB.api('/' + pageid + '/albums?fields=id,name', function(response) {
+    for (var i=0; i<response.data.length; i++) {
+      var album = response.data[i];
+      
+      if (album.name == 'Cover Photos'){
+
+        FB.api('/'+album.id+'/photos', function(photos){
+          console.log(photos)
+          if (photos && photos.data && photos.data.length){
+            for (var j=0; j<photos.data.length; j++){
+              var photo = photos.data[j];
+              coverPhotos.push(photo.source);
+            }
+          }
+        });
+
+        break;
       }
     }
-);
-
-function makeArray (postsObj){
-  for (i=0 ; i<postsObj.length; i++){
-    newsPosts.push({
-      date: postsObj[i].created_time,
-      name: postsObj[i].name,
-      description: postsObj[i].description,
-      picture: postsObj[i].picture,
-      link: postsObj[i].link
-    });
-  }
-  
-    $('#posts').append(function(i) {
-    return newsPosts[i].join('');
-
   });
-};
-
-
-console.log("Aqui esta la vaina" + postsArr)
-
-
-
-
+}
 </script>
-
-
-
-<!-- Make an observable dom element to append the array data to  -->
-<div id="posts">
-</div>
-
 
 </body>
 </html>

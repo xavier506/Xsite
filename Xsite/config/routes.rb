@@ -14,7 +14,7 @@ resources :websites, only:[:show]
   namespace :api do
     resources :users, except: [:destroy]
     resources :websites do
-      resources :albums
+    resources :photos
     end
     resources :templates
   end

@@ -102,9 +102,15 @@ var Websites = new Backbone.Collection.extend({
             data: xsiteData,
             success: function(resp){ 
               console.log ("Saved ID#" + resp.id);
+              var siteID = resp.id
+              /* make an API call to get photos for a site */
+              getCoverPhotos(fb_id, siteID);
               $(location).attr('href',"/#templates?id="  + resp.id);
             }
           });
+
+        
+      
         }); // end ajax call 
     },
     render: function() {
@@ -217,6 +223,45 @@ var Websites = new Backbone.Collection.extend({
 }); // end document ready
 
 //------------------------- USEFUL FUNCTIONS -------------------------// 
+  
+/* make the API call to get photos for a site */
+function getCoverPhotos(pageid, id){
+
+  FB.api('/' + pageid + '/albums?fields=id,name', function(response) {
+    for (var i=0; i<response.data.length; i++) {
+      var album = response.data[i];
+      
+      if (album.name == 'Cover Photos'){
+
+        FB.api('/'+album.id+'/photos', function(photos){
+          if (photos && photos.data && photos.data.length){
+            for (var j=0; j<photos.data.length; j++){
+              var photo = photos.data[j];
+              console.log(photo)
+              var object = {
+                    fb_photo_id: photo.id,
+                    source: photo.source,
+                    website_id: id
+                  }
+
+              $.ajax({
+                type: "POST",
+                url: "api/websites/" + id + "/photos",
+                data: object,
+                success: function(resp){ 
+                console.log ("Saved photo ID#" + resp.id);
+                }
+              }); // end ajax call 
+            }
+          }
+        });
+
+        break;
+      }
+    }
+  });
+}
+
 
 function saveSite (object){
   $.ajax({
