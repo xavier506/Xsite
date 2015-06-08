@@ -15,12 +15,31 @@
       <div class="pure-u-1">
         <h1 class="homeHeader">Create and update your website instantly</h1>
         <form class="pure-form">
-          <input type="url" class="fb_url pure-input-rounded pure-input-1-3" placeholder="Enter your facebook page URL">
+          <input type="url" class="fb_url pure-input-rounded pure-input-1-3" placeholder="Just enter your facebook page URL ...">
           <button type="submit" class="pure-button">Preview your Website</button>
         </form>
         <h4 class="homeSubHeader">Mobile Friendly and Search Engine Optimized Templates</h4>
       </div>
     </div>
+    <% if @user %>
+    <table class="pure-table">
+    <thead>
+        <tr>
+            <th colspan="3"><%= @user.name %>&rsquo;s websites:</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    <% @user_sites.each do |website| %>
+    <tr class="pure-table-odd">
+      <td><%= website.name %></td>
+      <td><a href="/#templates?id=<%= website.id %>">Edit</a></td>
+      <td><a href="/websites/<%= website.id %>">View Site</a></td>
+    </tr>
+    <% end %>
+    </tbody>
+</table>  
+<% end %>
   </center>
 </script>
 
@@ -30,7 +49,7 @@
     <div id="header-fixed">
       <form class="pure-form pure-form-stacked">
         <fieldset>
-          <legend>&nbsp;&nbsp;  <b>Almost Ready!</b> Tell us a bit more about your business and select a template.</legend>
+          <legend>&nbsp;<b>Your website is almost Ready!</b> Tell us a bit more about your business, select a template and log in to save your site.</legend>
           <div class="pure-g l-box">
             <div class="pure-u-1 pure-u-md-1-3">
               <label for="contact-name">Contact Name <em>(leave blank for none)</em></label>
@@ -53,7 +72,7 @@
               <input type="text" id="domain" class="pure-u-20-24" placeholder="Enter a domain name for your site" />
             </div>
             <div class="pure-u-1 pure-u-md-1-3" id="logins"> 
-                <div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="true" scope="public_profile,email" onlogin="checkLoginState();">Login with Facebook</div>
+                <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="true" scope="public_profile,email" onlogin="checkLoginState();">Login to save your site</div>
             </div>
           </div>
         </fieldset>
@@ -67,7 +86,7 @@
         <h3 class="templateName" data-id="2">Parallax Template</h3>
       </div>
       <div class="pure-u-1-4">
-        <h3 class="templateName" data-id="3">Ellegance Template</h3>
+        <h3 class="templateName" data-id="3">Elegance Template</h3>
       </div>
       <div class="pure-u-1-4">
         <h3 class="templateName" data-id="4">Professional Template</h3>

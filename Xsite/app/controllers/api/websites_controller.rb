@@ -24,6 +24,7 @@
         else 
         @website = Website.create({
         fb_id: params[:fb_id],
+        user_id: session[:user_id],
         template_id: params[:template_id],
         facebook_url: params[:facebook_url],
         name: params[:name],
@@ -76,6 +77,9 @@
         end
         if params[:template_id]
         @website.template_id = params[:template_id]
+        end
+        if params[:user_id]
+        @website.user_id = params[:user_id]
         end
         # @website.fb_id = params[:fb_id]
         # @website.facebook_url = params[:facebook_url]

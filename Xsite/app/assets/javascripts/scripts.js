@@ -18,7 +18,7 @@ var Websites = new Backbone.Collection.extend({
  var IndexView = Backbone.View.extend({
     initialize: function() {
       this.render();
-      $('body').stye
+      // $('body').stye
     },
     template: _.template($('script[data-id="homepage"]').text()),
 
@@ -119,6 +119,9 @@ var Websites = new Backbone.Collection.extend({
       $('body').css('background','none')
       var id = location.hash.replace("#templates?id=","");
       $('#siteloader').load("/websites/" + id);
+      var preview = $("<a href='/websites/" + id + "' class='button-xlarge pure-button pure-button-primary'>View my Site!</a>");
+          preview.prependTo("#logins");
+      //$('#siteloader').innerHTML = "<iframe src='/websites/" + id + "' width='500' height='300' frameborder='0'>"
       getSite(id);
     },
     template: _.template($('script[data-id="templates"]').text()),
@@ -136,7 +139,7 @@ var Websites = new Backbone.Collection.extend({
               console.log ("Saved ID# " + resp.id);
               // Preview the template in the preview div
               $('#siteloader').load("/websites/" + resp.id);
-              //$('#siteloader').replaceWith("<iframe src='/websites/" + resp.id + "' width='500' height='300' frameborder='0'>");
+              //$('#siteloader').innerHTML = "<iframe src='/websites/" + resp.id + "' width='500' height='300' frameborder='0'>"
             }
           });
       },

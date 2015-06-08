@@ -33,17 +33,18 @@ console.log("SDK linked");
       // Logged into your app and Facebook.
       // testAPI();
       createUser(response);
-      var id = location.hash.replace("#templates?id=","");
-      var preview = $("<a href='/websites/" + id + "' class='button-xlarge pure-button pure-button-primary'>View my Site!</a>");
-          preview.appendTo("#logins");
 
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
+      console.log ("Logging Out");
+      $(location).attr('href',"/logout");
       document.getElementById('status').innerHTML = 'Please log ' +
         'into this app.';
     } else {
       // The person is not logged into Facebook, so we're not sure if
       // they are logged into this app or not.
+      console.log ("Logging Out");
+      $(location).attr('href',"/logout");
       document.getElementById('status').innerHTML = 'Please log ' +
         'into Facebook.';
     }
@@ -87,14 +88,20 @@ console.log("SDK linked");
             success: function(resp){ 
               console.log ("Saved USER ID#" + resp.id);
               if (location.hash !== '' ){ 
-              // get website ID
               var siteID = location.hash.replace("#templates?id=","");
+              console.log("site ID ")
+              console.log(siteID)
+              var userID = parseInt(resp.id)
+              console.log("user ID ")
+              console.log(userID)
+              var siteUserData = {user_id: userID}
+              console.log(siteUserData)
                 $.ajax({
                   type:"PATCH",
-                  url: "/api/websites/" + siteID,
-                  data: {user_id: resp.id},
+                  url: "/api/websites/"+siteID,
+                  data: siteUserData,
                     success: function(resp){
-                      console.log("user id " + resp.id + "saved to website id" + siteID)
+                      console.log("user id " + userID + " saved to website id " + siteID)
                     }
                 });
               }
@@ -123,6 +130,9 @@ console.log("SDK linked");
             console.log(user)
             showUserSites(user_id);
             console.log(user_id)
+            if (location.hash == ''){
+              $(location).attr('href',"/");
+            }
           }
     });
   };

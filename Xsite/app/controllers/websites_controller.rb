@@ -8,7 +8,7 @@ class WebsitesController < ApplicationController
     elsif @website.template_id == 2 
       render :parallax, layout: false
     elsif @website.template_id == 3
-      render :ellegance, layout: false
+      render :elegance, layout: false
       elsif @website.template_id == 4 
       render :professional, layout: false
     end
