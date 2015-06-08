@@ -20,18 +20,18 @@ class CreateWebsites < ActiveRecord::Migration
       t.string :hours
       t.string :cover_photo
       t.string :logo
-
       t.string :facebook_url
+      
       t.string :contact_name
       t.string :twitter_url
       t.string :html_title
       t.boolean :published
       t.boolean :display_news
       t.string :domain
-      t.integer :template_id, :null => false, :default => 1
-      #t.references :template
-      t.references :user
-
+      
+      t.integer :template_id
+      t.integer :user_id
+      
       t.timestamps null: false
     end
   end

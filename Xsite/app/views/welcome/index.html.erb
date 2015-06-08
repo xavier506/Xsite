@@ -1,36 +1,79 @@
 <div id="main"></div>
 
 <script type="text/html" data-id="homepage">
+<div class="pure-g">
+  <div class="pure-u-1">
+    <div class="homeLogin">
+    <div id="status"></div>
+      <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="true" scope="public_profile,email" onlogin="checkLoginState();">
+      </div>
+    </div>
+  </div>
+</div>
   <center>
     <div class="pure-g">
       <div class="pure-u-1">
-        <h1>Create and update your website instantly</h1>
+        <h1 class="homeHeader">Create and update your website instantly</h1>
         <form class="pure-form">
-          <input type="url" class="fb_url pure-input-rounded pure-input-1-3" placeholder="http://facebook.com/your page ...">
-          <button type="submit" class="pure-button">Build Website</button>
+          <input type="url" class="fb_url pure-input-rounded pure-input-1-3" placeholder="Enter your facebook page URL">
+          <button type="submit" class="pure-button">Preview your Website</button>
         </form>
-        <h4>Mobile Friendly and Search Engine Optimized Templates</h4>
+        <h4 class="homeSubHeader">Mobile Friendly and Search Engine Optimized Templates</h4>
       </div>
     </div>
   </center>
 </script>
 
 <script type="text/html" data-id="templates">
-  <center>
-  <h1>Select a Template for your website</h1>
-    <div class="pure-g">
+<div class="pure-g">
+  <div class="pure-u-1">
+    <div id="header-fixed">
+      <form class="pure-form pure-form-stacked">
+        <fieldset>
+          <legend>&nbsp;&nbsp;  <b>Almost Ready!</b> Tell us a bit more about your business and select a template.</legend>
+          <div class="pure-g l-box">
+            <div class="pure-u-1 pure-u-md-1-3">
+              <label for="contact-name">Contact Name <em>(leave blank for none)</em></label>
+              <input type="text" id="contact-name" class="pure-u-20-24" placeholder="Enter business contact name" />
+            </div>
+            <div class="pure-u-1 pure-u-md-1-3">
+              <label for="email">Contact Email <em>(will display a contact form)</em></label>
+              <input type="email" id="email" class="pure-u-20-24" placeholder="Enter your email" />
+            </div>
+            <div class="pure-u-1 pure-u-md-1-3">
+              <label for="html-title">HTML title <em>(best for SEO)</em></label>
+              <input type="text" id="html-title" class="pure-u-20-24" placeholder="Enter the HTML title for your page" />
+            </div>
+            <div class="pure-u-1 pure-u-md-1-3">
+              <label for="twitter">Twitter URL <em>(include twitter feed on your site)</em></label>
+              <input type="text" id="twitter" class="pure-u-20-24" placeholder="Enter a twitter URL to display your twitter feed on your website" />
+            </div>
+            <div class="pure-u-1 pure-u-md-1-3">
+              <label for="domain">Domain Name <em>(publish your site on your own domain)</em></label>
+              <input type="text" id="domain" class="pure-u-20-24" placeholder="Enter a domain name for your site" />
+            </div>
+            <div class="pure-u-1 pure-u-md-1-3" id="logins"> 
+                <div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="true" scope="public_profile,email" onlogin="checkLoginState();">Login with Facebook</div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <div class="pure-g" id="my-menus" >
       <div class="pure-u-1-4">
-        <h2 class="templateName" data-id="1">Basic</h2>
+        <h3 class="templateName" data-id="1">Basic Template</h3>
       </div>
       <div class="pure-u-1-4">
-        <h2 class="templateName" data-id="2">Parallax</h2>
+        <h3 class="templateName" data-id="2">Parallax Template</h3>
       </div>
       <div class="pure-u-1-4">
-        <h2 class="templateName" data-id="3">Ellegance</h2>
+        <h3 class="templateName" data-id="3">Ellegance Template</h3>
       </div>
       <div class="pure-u-1-4">
-        <h2 class="templateName" data-id="4">Professional</h2>
+        <h3 class="templateName" data-id="4">Professional Template</h3>
       </div>
     </div>
-  </center>
+  </div>
+</div>
+<div id="siteloader"></div> 
 </script>

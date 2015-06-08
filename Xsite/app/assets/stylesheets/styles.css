@@ -1,0 +1,79 @@
+body { 
+  background: url(nyc-bg.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.homeHeader {
+  color:white;
+  text-shadow: 2px 2px #000000;
+  font-size: 38px;
+}
+
+#status {
+  text-shadow: 2px 2px #000000;
+  font-size: 14px;
+  color: white;
+}
+
+.homeSubHeader{
+  text-shadow: 2px 2px #000000;
+  font-size: 20px;
+  color: white;
+}
+
+.fb-login-button{
+  padding-top: 25px;
+}
+.l-box {
+  padding: 1em;
+}
+
+.homeLogin{
+  width: 33%;
+  float: right;
+  text-align: center;
+
+  padding-top: 20px;
+}
+
+div#header-fixed {
+  position:fixed;
+  top:0px; 
+  margin:auto; 
+  z-index:100000; 
+  width:100%;
+  background-color: #ecf0f1;
+  opacity:0.95;
+} 
+
+div#my-menus {
+  position:fixed;
+  top:225px; 
+  margin:auto; 
+  z-index:100000; 
+  width:100%;
+  background:#000; 
+  height:75px; 
+  opacity:0.8;
+  color: #fff;
+  text-align: center;
+
+  -webkit-box-shadow: 0px 3px 3px 1px rgba(150,150,150,0.5);
+  -moz-box-shadow: 0px 3px 3px 1px rgba(150,150,150,0.5);
+  box-shadow: 0px 3px 3px 1px rgba(150,150,150,0.5);
+}
+
+#siteloader {
+  z-index: -100000;
+  position: absolute;
+  top: 225px;
+  width:100%;
+  margin:auto; 
+}
+
+label > em {
+  font-size: 10px;
+  color: #888;
+}

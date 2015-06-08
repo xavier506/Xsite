@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,23 +73,38 @@
                     <p class="lead section-lead">Our Mission: <%= @website.mission %></p>
                     <% end %>
                     <p class="section-paragraph"><%= @website.company_overview %></p>
-                    <div class="fb-page" data-href="<%= @website.facebook_url %>" data-hide-cover="true" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="<%= @website.facebook_url %>"><a href="<%= @website.facebook_url %>">Facebook</a></blockquote></div></div>
+                </div>
+            </div>
 
-                    <div class="address">
-                    <%= @website.email %> 
-                    <%= @website.phone %> 
-                    <%= @website.street %> 
-                    <%= @website.city %> <%= @website.country %> <%= @website.zip %> 
-
-                    <% if @website.latitude && @website.longitude %>
-                    <%= @website.latitude %> 
-                    <%= @website.longitude %> 
-                    <% end %>
-                    </div>
-
-                    <% if @website.hours %>
+            <div class="row">
+                <div class="col-lg-6 address">
+                  <% if @website.email %>
+                   <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <%= @website.email %>
+                  <% end %>
+                  <% if @website.phone %> 
+                    <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> <%= @website.phone %> </br>
+                  <% end %>
+                  <% if @website.street %>
+                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <%= @website.street %>, 
+                  <% end %>
+                  <% if @website.city %>
+                    <%= @website.city %>,  
+                  <% end %>
+                  <% if @website.country %>
+                    <%= @website.country %>
+                  <% end %>
+                  <% if @website.zip %>
+                    <%= @website.zip %> 
+                  <% end %>
+                  <% if @website.hours %>
                     Business Hours: <%= @website.hours %> </br>
-                    <% end %>
+                  <% end %>
+                  
+                  <div id="map-canvas"></div>  
+                 
+                </div>
+                <div class="col-lg-6">
+                  <div class="fb-page" data-href="<%= @website.facebook_url %>" data-hide-cover="true" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="<%= @website.facebook_url %>"><a href="<%= @website.facebook_url %>">Facebook</a></blockquote></div></div>
                 </div>
             </div>
             <!-- /.row -->
@@ -113,7 +126,23 @@
 
     <!-- jQuery -->
     <script src="/minimal-bootstrap/js/jquery.js"></script>
+    <% if @website.latitude %>
+    <!-- googleMaps -->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script>
+      var map;
+      function initialize() {
+        var mapOptions = {
+          zoom: 8,
+          center: new google.maps.LatLng(<%= @website.latitude %>,<%= @website.longitude %>)
+        };
+        map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+      }
 
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+    <% end %>
     <!-- Bootstrap Core JavaScript -->
     <script src="/minimal-bootstrap/js/bootstrap.min.js"></script>
 

@@ -5,11 +5,12 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
-  get '/login' => 'sessions#new'
-  get '/logout' => 'sessions#destroy'
+  post '/login' => 'sessions#create'
+  delete '/logout' => 'sessions#destroy'
 
 resources :websites, only:[:show]
-
+#resource :sessions, except: [:update]
+  
   namespace :api do
     resources :users, except: [:destroy]
     resources :websites do

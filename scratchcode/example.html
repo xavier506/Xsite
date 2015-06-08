@@ -5,7 +5,11 @@
 <meta charset="UTF-8">
 </head>
 <body>
+  <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
 <script>
+
+var postsArr = new Array ();
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
@@ -17,6 +21,7 @@
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
       testAPI();
+      getPosts("119216568127407", setPostsArr); 
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -29,6 +34,10 @@
     }
   }
 
+  function setPostsArr(arr) {
+    postsArr = arr;
+  }
+
   // This function is called when someone finishes with the Login
   // Button.  See the onlogin handler attached to it in the sample
   // code below.
@@ -39,38 +48,37 @@
   }
 
   window.fbAsyncInit = function() {
-  FB.init({
-    appId      : '{your-app-id}',
-    cookie     : true,  // enable cookies to allow the server to access 
-                        // the session
-    xfbml      : true,  // parse social plugins on this page
-    version    : 'v2.2' // use version 2.2
-  });
+    FB.init({
+      appId      : '827486570639909',
+      cookie     : true,  // enable cookies to allow the server to access 
+                          // the session
+      xfbml      : true,  // parse social plugins on this page
+      version    : 'v2.2' // use version 2.2
+    });
 
-  // Now that we've initialized the JavaScript SDK, we call 
-  // FB.getLoginStatus().  This function gets the state of the
-  // person visiting this page and can return one of three states to
-  // the callback you provide.  They can be:
-  //
-  // 1. Logged into your app ('connected')
-  // 2. Logged into Facebook, but not your app ('not_authorized')
-  // 3. Not logged into Facebook and can't tell if they are logged into
-  //    your app or not.
-  //
-  // These three cases are handled in the callback function.
+    // Now that we've initialized the JavaScript SDK, we call 
+    // FB.getLoginStatus().  This function gets the state of the
+    // person visiting this page and can return one of three states to
+    // the callback you provide.  They can be:
+    //
+    // 1. Logged into your app ('connected')
+    // 2. Logged into Facebook, but not your app ('not_authorized')
+    // 3. Not logged into Facebook and can't tell if they are logged into
+    //    your app or not.
+    //
+    // These three cases are handled in the callback function.
 
-  FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-  });
-
-  };
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+};
 
   // Load the SDK asynchronously
   (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 
@@ -84,6 +92,20 @@
         'Thanks for logging in, ' + response.name + '!';
     });
   }
+
+
+function getPosts(pageID, callback){
+/* make the API call */
+  FB.api(
+      "/" + pageID + "/feed",
+      function (response) {
+        if (response && !response.error) {
+          console.log(response);
+          callback(response.data);
+        }
+      }
+  );
+}
 </script>
 
 <!--
@@ -97,6 +119,48 @@
 
 <div id="status">
 </div>
+
+<p>General Assembly Page ID : 119216568127407</p>
+<input type="text" id="pageid" value="119216568127407" /> 
+<button>get posts</button>
+
+<script>
+
+$('button').click(function(){
+  console.log("here come the posts")
+  var pageid = $('input').val()
+  console.log("Page ID :" + pageid)
+  getPosts(pageid);
+})
+
+
+
+function makeArray (postsObj){
+  for (i=0 ; i<postsObj.length; i++){
+    newsPosts.push({
+      date: postsObj[i].created_time,
+      name: postsObj[i].name,
+      description: postsObj[i].description,
+      picture: postsObj[i].picture,
+      link: postsObj[i].link
+    });
+  }
+  
+    $('#posts').append(function(i) {
+    return newsPosts[i].join('');
+
+  });
+};
+
+
+console.log("Aqui esta la vaina" + postsArr)
+
+</script>
+
+<!-- Make an observable dom element to append the array data to  -->
+<div id="posts">
+</div>
+
 
 </body>
 </html>
