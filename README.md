@@ -1,10 +1,11 @@
 # Xsite
+## A fast and simple way to make a website
 WDI Final Project
 
 ## App description
-Facebook Open Graph contains many small businesses' most important information required for acquiring new customers via a website, 
-especially if search engines understand the various components of a page. By creating a website for small businesses we can improve the presentation and search engine placement of local businesses' data. 
-This app will utilize the mechanism provided by  Schema.org a more detail about particular entities on the page, which could be populated automatically via the Facebook open graph API
+Facebook Open Graph contains many small businesses' most important information required for acquiring new customers via a website,
+especially if search engines understand the various components of a page. By creating a website for small businesses using the information available on Facebook , we can improve the presentation and search engine placement of local businesses' data.
+This app will utilize the structured data mechanism provided by Schema.org, which is populated automatically via the Facebook open graph API
 
 For example, a page about a local business could include some or all of the following fields:
 
@@ -16,7 +17,7 @@ For example, a page about a local business could include some or all of the foll
 - Photos
 - News
 - Events
-- Ratings 
+- Ratings
 
 
 # Libraries

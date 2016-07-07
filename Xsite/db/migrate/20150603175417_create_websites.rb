@@ -15,8 +15,8 @@ class CreateWebsites < ActiveRecord::Migration
       t.string :city
       t.string :zip
       t.string :country
-      t.integer :latitude
-      t.integer :longitude
+      t.float :latitude
+      t.float :longitude
       t.string :hours
       t.string :cover_photo
       t.string :logo

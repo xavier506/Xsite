@@ -116,7 +116,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                  <p>Copyright &copy; <%= Time.now.strftime('%Y') %> <%= @website.name %> </p>
+                  <p>Copyright &copy; <%= Time.now.strftime('%Y') %> <%= @website.name %></p>
                 </div>
             </div>
             <!-- /.row -->
@@ -126,7 +126,7 @@
 
     <!-- jQuery -->
     <script src="/minimal-bootstrap/js/jquery.js"></script>
-    <% if @website.latitude %>
+  
     <!-- googleMaps -->
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
     <script>
@@ -134,7 +134,7 @@
       function initialize() {
         var mapOptions = {
           zoom: 8,
-          center: new google.maps.LatLng(<%= @website.latitude %>,<%= @website.longitude %>)
+          center: new google.maps.LatLng(<%= @website.latitude %> , <%= @website.longitude %>)
         };
         map = new google.maps.Map(document.getElementById('map-canvas'),
             mapOptions);
@@ -142,11 +142,9 @@
 
       google.maps.event.addDomListener(window, 'load', initialize);
     </script>
-    <% end %>
+    
     <!-- Bootstrap Core JavaScript -->
     <script src="/minimal-bootstrap/js/bootstrap.min.js"></script>
 
 </body>
-
 </html>
-

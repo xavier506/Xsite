@@ -140,8 +140,7 @@
           <p class="about-des">
           <%= @website.about %> 
           </p>
-          <img class="about-img" src="/elegance/images/about.png"
-          alt="52de15aa5d3566c14300015e_about.png">
+          <img class="about-img" src="<%= @photo2 %>">
         </div>
       </div>
       </div>
@@ -184,7 +183,7 @@
             </div>
             <div class="w-col w-col-6 exp-col2">
               <div class="col2-div">
-                <img src="/elegance/images/who-we-are.png">
+                <img src="<%= @photo3 %>">
               </div>
             </div>
           </div>
@@ -706,12 +705,13 @@
               <p>Thank you! Your submission has been received!</p>
             </div>
             <div class="w-form-fail">
-              <p>Oops! Something went wrong while submitting the form :(</p>
+              <p>Oops! Something went wrong while submitting the form :(
+              </p>
             </div>
           </div>
         </div>
       </div>
-      <div class="w-widget w-widget-map contac-map" data-widget-latlng="37.782163,-122.400591" data-widget-style="roadmap" data-widget-zoom="10" data-widget-tooltip="Carino Headquater"></div>
+      <div class="w-widget w-widget-map contac-map" data-widget-latlng="<%= @website.latitude %>, <%= @website.longitude %>" data-widget-style="roadmap" data-widget-zoom="5" data-widget-tooltip="<%= @website.name %>"></div>
       <div class="w-container">
         <div class="w-row contact-col">
           <div class="w-col w-col-4 contact-col1">
@@ -745,7 +745,7 @@
               <h4 class="contact-col-head">Call Us</h4>
             </div>
             <div>
-              <div class="contact-col-text-bar-last">P: <%= @website.phone %></div>
+              <div class="contact-col-text-bar-last"><%= @website.phone %></div>
             </div>
           </div>
         </div>
